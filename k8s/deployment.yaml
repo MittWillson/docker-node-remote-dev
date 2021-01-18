@@ -18,14 +18,16 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "1000m"
+            memory: "2Gi"
+            cpu: "2000m"
         volumeMounts:
           - mountPath: /data/
             name: data
         ports:
           - containerPort: 3000
+            name: http
           - containerPort: 22
+            name: sshd
       volumes:
         - name: data
           persistentVolumeClaim:

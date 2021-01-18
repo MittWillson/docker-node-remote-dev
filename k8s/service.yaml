@@ -9,8 +9,8 @@ spec:
     app: dev-node
   ports:
   - port: 3000
-    targetPort: 3000
+    targetPort: http
     name: web-dev
   - port: 22
-    targetPort: 22
+    targetPort: sshd
     name: sshd
