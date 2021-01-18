@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-node
+  template:
+    metadata:
+      labels:
+        app: dev-node
+    spec:
+      containers:
+      - name: env
+        image: mittwillson/node-dev:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+        volumeMounts:
+          - mountPath: /data/
+            name: data
+        ports:
+          - containerPort: 3000
+          - containerPort: 22
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: dev-node-data
