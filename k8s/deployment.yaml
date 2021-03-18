@@ -16,13 +16,18 @@ spec:
       - name: env
         image: mittwillson/node-dev:latest
         imagePullPolicy: Always
+        restartPolicy: Always
         resources:
           limits:
             memory: "2Gi"
             cpu: "2000m"
         volumeMounts:
-          - mountPath: /data/
-            name: data
+        - mountPath: /data/
+          subPath: data/
+          name: data
+        - mountPath: /root
+          subPath: root/
+          name: data
         ports:
           - containerPort: 3000
             name: http
